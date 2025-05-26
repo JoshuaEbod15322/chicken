@@ -44,7 +44,7 @@ function spawnFlyingObstacle() {
 
         flyingObstacle.appendChild(flyingImg);
 
-        const randomTop = Math.floor(Math.random() * 100) + 330;
+        const randomTop = Math.floor(Math.random() * 100) + 300;
         flyingObstacle.style.top = `${randomTop}px`;
 
         flyingObstacle.style.animationDuration = (5 / gameState.gameSpeed) + 's';
