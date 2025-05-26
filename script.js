@@ -171,7 +171,7 @@ function jump() {
     setTimeout(() => {
         chicken.classList.remove('jumping');
         gameState.isJumping = false; 
-    }, 600); 
+    }, 500); 
 }
 
         
