@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <title>Chicken Game</title>
+</head>
+<body>
+
+<audio id="clickSound" src="audio/click.mp3" preload="auto"></audio>
+<audio id="jumpSound" src="audio/jump.wav" preload="auto"></audio>
+<audio id="gameOverSound" src="audio/chicken-jockey.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="audio/lava-bg.mp3" preload="auto" loop></audio>
+
+  <div id="menuScreen" class="menu-screen">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="grass"></div>
+    <div class="ground"></div>
+    <div class="menu-chicken">
+      <img src="images/chicken-bg.png" alt="Chicken" class="menu-chicken-img" style="height: 150px;"/>
+    </div>
+
+    <div class="game-container">
+      <h1 class="title">Chicken Jockey</h1>
+      <button class="menu-button" onclick="startGame()">Start</button>
+      <button class="menu-button" onclick="showOptions()">Options</button>
+      <button class="menu-button" onclick="showCredits()">Credits</button>
+    </div>
+  </div>
+
+  <div id="gameScreen" class="game-screen">
+    <div class="game-ui">
+      <div>Score: <span id="score">0</span></div>
+      <div>High Score: <span id="highScore">0</span></div>
+    </div>
+
+    <div class="chicken" id="chicken">
+      <img src="images/chicken-bg.png" alt="Chicken" />
+    </div>
+
+    <div class="game-ground"></div>
+
+    <div class="game-over" id="gameOver">
+      <h2>Game Over!</h2>
+      <p>Score: <span id="finalScore">0</span></p>
+      <button class="menu-button" onclick="restartGame()">Try Again</button>
+      <button class="menu-button" onclick="backToMenu()">Main Menu</button>
+    </div>
+  </div>
+
+  
+  <div id="optionsModal" class="modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Options</h2>
+
+      <div class="option-row">
+        <span>Sound Effects:</span>
+        <button class="option-button" id="soundBtn" onclick="toggleSound()">OFF</button>
+      </div>
+
+      <div class="option-row">
+        <span>Background Music:</span>
+        <button class="option-button" id="musicBtn" onclick="toggleMusic()">OFF</button>
+      </div>
+
+      <div class="option-row">
+        <span>Difficulty:</span>
+        <button class="option-button" id="difficultyBtn" onclick="changeDifficulty()">Normal</button>
+      </div>
+
+      <div class="modal-text" style="margin-top: 20px;">
+        Controls: tap/hold the SPACE or CLICK to jump<br/>
+        Avoid the stones and bat!
+      </div>
+
+      <button class="close-btn" onclick="closeModal('optionsModal')">Close</button>
+    </div>
+  </div>    
+
+
+  <div id="creditsModal" class="modal">
+    <div class="modal-content">
+      <h2 class="modal-title">Credits</h2>
+      <div class="modal-text">
+        Game Designer: Joshua Ebod<br/><br/>
+        Programming: Jehu Joshua Besañes, Andie Cris Encio<br/><br/>
+        Art: Jehu Joshua Besañes, Joshua Ebod<br/><br/>
+        Music Artist: Andie Cris Encio<br/><br/>
+        Special Thanks: All the brave chickens from the minecraft world!
+      </div>
+      <button class="close-btn" onclick="closeModal('creditsModal')">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="function.js"></script>
+</body>
+</html>

@@ -1,0 +1,367 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+* {
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+body {
+	font-family:'Press Start 2P',cursive;
+	background:linear-gradient(135deg,#87CEEB 0%,#98D8E8 50%,#B0E0E6 100%);
+	height:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	overflow:hidden;
+	position:relative;
+}
+.chicken img {
+	width:60px;
+	height:auto;
+}
+.obstacle-img {
+	width:70px;
+	height:auto;
+	display:block;
+}
+.menu-screen {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:100%;
+}
+.game-screen {
+	display:none;
+	width:100%;
+	height:100%;
+	background:linear-gradient(to bottom,#87CEEB 0%,#98D8E8 70%,#32CD32 85%,#228B22 100%);
+	position:relative;
+	overflow:hidden;
+}
+.cloud {
+	position:absolute;
+	background:white;
+	border-radius:50px;
+	opacity:0.8;
+	animation:float 6s ease-in-out infinite;
+}
+.cloud::before,.cloud::after {
+	content:'';
+	position:absolute;
+	background:white;
+	border-radius:50px;
+}
+.cloud1 {
+	width:80px;
+	height:40px;
+	top:20%;
+	left:10%;
+	animation-delay:0s;
+}
+.cloud1::before {
+	width:50px;
+	height:50px;
+	top:-25px;
+	left:10px;
+}
+.cloud1::after {
+	width:60px;
+	height:40px;
+	top:-15px;
+	right:10px;
+}
+.cloud2 {
+	width:60px;
+	height:30px;
+	top:15%;
+	right:15%;
+	animation-delay:-2s;
+}
+.cloud2::before {
+	width:40px;
+	height:40px;
+	top:-20px;
+	left:5px;
+}
+.cloud2::after {
+	width:50px;
+	height:30px;
+	top:-10px;
+	right:5px;
+}
+@keyframes float {
+	0%,100% {
+	transform:translateY(0px);
+}
+50% {
+	transform:translateY(-20px);
+}
+}.game-container {
+	background:rgba(255,255,255,0.95);
+	border:8px solid #4B8B3B;
+	border-radius:20px;
+	padding:40px;
+	text-align:center;
+	box-shadow:0 20px 40px rgba(0,0,0,0.3);
+	position:relative;
+	z-index:10;
+	max-width:500px;
+	width:90%;
+}
+.title {
+	font-size:36px;
+	color:#2C5530;
+	margin-bottom:40px;
+	text-shadow:3px 3px 0px #FFD700;
+	animation:glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+	from {
+	text-shadow:3px 3px 0px #FFD700,0 0 10px #FFD700;
+}
+to {
+	text-shadow:3px 3px 0px #FFD700,0 0 20px #FFD700,0 0 30px #FFD700;
+}
+}.menu-button {
+	display:block;
+	width:280px;
+	margin:20px auto;
+	padding:15px 30px;
+	font-family:'Press Start 2P',cursive;
+	font-size:16px;
+	background:linear-gradient(45deg,#FF6B35,#FF8E53);
+	color:white;
+	border:4px solid #D4540A;
+	border-radius:12px;
+	cursor:pointer;
+	transition:all 0.3s ease;
+	text-decoration:none;
+	position:relative;
+	overflow:hidden;
+}
+.menu-button:hover {
+	background:linear-gradient(45deg,#FF8E53,#FFAB71);
+	transform:translateY(-3px);
+	box-shadow:0 8px 20px rgba(255,107,53,0.4);
+}
+.menu-button:active {
+	transform:translateY(0px);
+	box-shadow:0 4px 10px rgba(255,107,53,0.4);
+}
+.ground {
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:120px;
+	background:linear-gradient(to bottom,#8B4513 0%,#A0522D 50%,#8B4513 100%);
+	z-index:1;
+}
+.grass {
+	position:absolute;
+	bottom:120px;
+	left:0;
+	width:100%;
+	height:30px;
+	background:linear-gradient(to bottom,#228B22 0%,#32CD32 50%,#228B22 100%);
+	z-index:2;
+}
+.menu-chicken {
+	position:absolute;
+	bottom:150px;
+	right:100px;
+	font-size:24px;
+	animation:chicken-walk 3s linear infinite;
+	z-index:5;
+}
+@keyframes chicken-walk {
+	0% {
+	transform:translateX(0px);
+}
+50% {
+	transform:translateX(-20px);
+}
+100% {
+	transform:translateX(0px);
+}
+}.game-ui {
+	position:absolute;
+	top:20px;
+	left:20px;
+	color:white;
+	font-size:16px;
+	z-index:100;
+	text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+}
+.chicken {
+	position:absolute;
+	bottom:150px;
+	left:100px;
+	font-size:40px;
+	z-index:50;
+	transition:bottom 0.3s ease;
+}
+.chicken.jumping {
+	bottom:250px;
+}
+.obstacle {
+	position:absolute;
+	bottom:150px;
+	right:-60px;
+	font-size:30px;
+	z-index:40;
+	animation:moveLeft linear;
+}
+@keyframes moveLeft {
+	to {
+	right:100vw;
+}
+
+}
+
+.flying-obstacle {
+  position: absolute;
+  top: 100px; /* Will be overridden with random value */
+  right: -60px;
+  z-index: 10;
+  animation: flyAcross 6s linear forwards;
+  pointer-events: none; /* So clicks pass through */
+}
+
+.flying-obstacle img {
+  height: 50px;
+}
+
+/* Keyframe animation for flying enemy */
+@keyframes flyAcross {
+  from {
+    right: -60px;
+  }
+  to {
+    right: 110%;
+  }
+}
+
+.game-ground {
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:150px;
+	background:linear-gradient(to bottom,#228B22 0%,#32CD32 30%,#8B4513 50%,#A0522D 100%);
+	z-index:10;
+}
+.game-over {
+	display:none;
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	background:rgba(255,255,255,0.95);
+	border:8px solid #4B8B3B;
+	border-radius:20px;
+	padding:30px;
+	text-align:center;
+	z-index:200;
+	box-shadow:0 20px 40px rgba(0,0,0,0.5);
+}
+.game-over h2 {
+	color:#FF6B35;
+	font-size:24px;
+	margin-bottom:20px;
+}
+.game-over p {
+	color:#333;
+	font-size:14px;
+	margin-bottom:20px;
+}
+.modal {
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.8);
+	z-index:1000;
+	justify-content:center;
+	align-items:center;
+}
+.modal-content {
+	background:white;
+	padding:30px;
+	border-radius:15px;
+	text-align:center;
+	border:4px solid #4B8B3B;
+	max-width:400px;
+	width:90%;
+}
+.modal-title {
+	font-size:20px;
+	color:#2C5530;
+	margin-bottom:20px;
+}
+.modal-text {
+	font-size:12px;
+	line-height:1.6;
+	margin-bottom:20px;
+	color:#333;
+}
+.option-row {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	margin:15px 0;
+	font-size:12px;
+}
+.option-button {
+	background:#FF6B35;
+	color:white;
+	border:2px solid #D4540A;
+	padding:8px 16px;
+	font-family:'Press Start 2P',cursive;
+	font-size:10px;
+	border-radius:6px;
+	cursor:pointer;
+	min-width:80px;
+}
+.option-button:hover {
+	background:#FF8E53;
+}
+.option-button.active {
+	background:#32CD32;
+	border-color:#228B22;
+}
+.close-btn {
+	background:#FF6B35;
+	color:white;
+	border:2px solid #D4540A;
+	padding:10px 20px;
+	font-family:'Press Start 2P',cursive;
+	font-size:10px;
+	border-radius:8px;
+	cursor:pointer;
+	margin-top:10px;
+}
+.close-btn:hover {
+	background:#FF8E53;
+}
+@media (max-width:600px) {
+	.title {
+	font-size:24px;
+}
+.menu-button {
+	width:240px;
+	font-size:14px;
+	padding:12px 24px;
+}
+.game-container {
+	padding:30px 20px;
+}
+.chicken {
+	font-size:30px;
+}
+.obstacle {
+	font-size:25px;
+}
+}
